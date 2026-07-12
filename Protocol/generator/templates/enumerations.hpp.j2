@@ -1,0 +1,61 @@
+// AUTO-GENERATED FILE - DO NOT EDIT BY HAND
+// Generated from enumerations.xml by protocol/generator/generate.py
+#pragma once
+
+#include <cstdint>
+#include <string>
+#include <stdexcept>
+
+namespace {{ protocol }}::enumerations {
+{% for enum in enums %}
+enum class {{ enum.name }}Value {
+{% for v in enum.enum_values %}
+    {{ v.name }}{{ "," if not loop.last }}
+{% endfor %}
+};
+
+class {{ enum.name }} {
+public:
+    explicit {{ enum.name }}({{ enum.name }}Value v) : value_(v) {}
+
+    {{ enum.name }}Value value() const { return value_; }
+
+    std::string toString() const {
+        switch (value_) {
+{% for v in enum.enum_values %}
+            case {{ enum.name }}Value::{{ v.name }}: return "{{ v.name }}";
+{% endfor %}
+        }
+        return "";
+    }
+
+    {{ enum.raw_cpp_type }} raw() const {
+        switch (value_) {
+{% for v in enum.enum_values %}
+            case {{ enum.name }}Value::{{ v.name }}: return {{ v.raw_literal }};
+{% endfor %}
+        }
+        return {{ enum.raw_cpp_type }}{};
+    }
+
+    static {{ enum.name }} fromRaw({{ enum.raw_cpp_type }} raw) {
+        switch (raw) {
+{% for v in enum.enum_values %}
+            case {{ v.raw_literal }}: return {{ enum.name }}({{ enum.name }}Value::{{ v.name }});
+{% endfor %}
+        }
+        throw std::invalid_argument("Unknown raw value for enum {{ enum.name }}");
+    }
+
+    static {{ enum.name }} fromName(const std::string& name) {
+{% for v in enum.enum_values %}
+        if (name == "{{ v.name }}") return {{ enum.name }}({{ enum.name }}Value::{{ v.name }});
+{% endfor %}
+        throw std::invalid_argument("Unknown name for enum {{ enum.name }}: " + name);
+    }
+
+private:
+    {{ enum.name }}Value value_;
+};
+{% endfor %}
+} // namespace {{ protocol }}::enumerations

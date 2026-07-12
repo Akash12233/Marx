@@ -1,0 +1,86 @@
+// AUTO-GENERATED FILE - DO NOT EDIT BY HAND
+// Generated from fields.xml by protocol/generator/generate.py
+#pragma once
+
+#include <cstdint>
+#include <string>
+
+#include "{{ protocol }}/enumerations/Enumerations.hpp"
+
+namespace {{ protocol }}::fields {
+
+namespace detail {
+    // Trims leading/trailing whitespace - used by toString() on fixed-width
+    // style string fields. toStringData() returns the untrimmed original.
+    inline std::string trim(const std::string& s) {
+        const auto start = s.find_first_not_of(" \t\n\r");
+        if (start == std::string::npos) return "";
+        const auto end = s.find_last_not_of(" \t\n\r");
+        return s.substr(start, end - start + 1);
+    }
+}
+{% for f in fields %}
+{% if f.kind == "string" %}
+class {{ f.name }} {
+public:
+    {{ f.name }}() = default;
+    explicit {{ f.name }}(std::string v) : value_(std::move(v)) {}
+{% if f.tag is not none %}
+    static constexpr int tag() { return {{ f.tag }}; }
+{% endif %}
+    const std::string& get() const { return value_; }
+    void set(std::string v) { value_ = std::move(v); }
+
+    // Trimmed value, e.g. "ABC123" from "  ABC123   "
+    std::string toString() const { return detail::trim(value_); }
+    // Raw, untrimmed value as stored, e.g. "  ABC123   "
+    const std::string& toStringData() const { return value_; }
+
+private:
+    std::string value_{};
+};
+{% elif f.kind == "enum" %}
+class {{ f.name }} {
+public:
+    {{ f.name }}() = default;
+    explicit {{ f.name }}({{ f.cpp_type }} raw) : value_(raw) {}
+{% if f.tag is not none %}
+    static constexpr int tag() { return {{ f.tag }}; }
+{% endif %}
+    // Raw wire value, e.g. '1'
+    {{ f.cpp_type }} get() const { return value_; }
+    void set({{ f.cpp_type }} raw) { value_ = raw; }
+
+    // Parsed enum wrapper, e.g. Side::Buy
+    {{ protocol }}::enumerations::{{ f.type }} value() const {
+        return {{ protocol }}::enumerations::{{ f.type }}::fromRaw(value_);
+    }
+
+    // Decoded name, e.g. "Buy"
+    std::string toString() const { return value().toString(); }
+    // Raw wire value as string, e.g. "1"
+    std::string toStringData() const { return {{ f.to_string_data_expr }}; }
+
+private:
+    {{ f.cpp_type }} value_{};
+};
+{% else %}
+class {{ f.name }} {
+public:
+    {{ f.name }}() = default;
+    explicit {{ f.name }}({{ f.cpp_type }} v) : value_(v) {}
+{% if f.tag is not none %}
+    static constexpr int tag() { return {{ f.tag }}; }
+{% endif %}
+    {{ f.cpp_type }} get() const { return value_; }
+    void set({{ f.cpp_type }} v) { value_ = v; }
+
+    std::string toString() const { return std::to_string(value_); }
+    std::string toStringData() const { return toString(); }
+
+private:
+    {{ f.cpp_type }} value_{};
+};
+{% endif %}
+{% endfor %}
+} // namespace {{ protocol }}::fields
