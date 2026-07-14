@@ -24,9 +24,9 @@ from parsers.enum_parser import parse_enumerations
 from parsers.field_parser import parse_fields
 from parsers.message_parser import parse_messages
 
-from emitters.enum_emitter import build_enum_context
-from emitters.field_emitter import build_field_context
-from emitters.message_emitter import build_message_context
+from parsers.enum_emitter import build_enum_context
+from parsers.field_emitter import build_field_context
+from parsers.message_emitter import build_message_context
 
 
 GENERATOR_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -44,14 +44,48 @@ jinja_env = Environment(
 
 
 def discover_protocols() -> list:
-    """Every subdirectory of schema/ is treated as a protocol."""
+    """
+    Every subdirectory of schema/ that has all 3 required XML files, each
+    containing valid, non-empty XML, is treated as a protocol. Anything
+    else is skipped with a warning rather than crashing the whole run.
+    """
+    import xml.etree.ElementTree as ET
+
     if not os.path.isdir(SCHEMA_ROOT):
         return []
-    return sorted(
-        name for name in os.listdir(SCHEMA_ROOT)
-        if os.path.isdir(os.path.join(SCHEMA_ROOT, name))
-    )
 
+    required_files = ["enumerations.xml", "fields.xml", "payloads.xml"]
+    protocols = []
+
+    for name in sorted(os.listdir(SCHEMA_ROOT)):
+        proto_dir = os.path.join(SCHEMA_ROOT, name)
+        if not os.path.isdir(proto_dir):
+            continue
+
+        missing = []
+        invalid = []
+        for fname in required_files:
+            fpath = os.path.join(proto_dir, fname)
+            if not os.path.isfile(fpath):
+                missing.append(fname)
+                continue
+            try:
+                root = ET.parse(fpath).getroot()
+                if len(root) == 0:
+                    invalid.append(f"{fname} (no child elements)")
+            except ET.ParseError:
+                invalid.append(f"{fname} (not valid XML)")
+
+        if missing:
+            print(f"[{name}] skipping - missing {', '.join(missing)}")
+            continue
+        if invalid:
+            print(f"[{name}] skipping - {', '.join(invalid)}")
+            continue
+
+        protocols.append(name)
+
+    return protocols
 
 def generate_protocol(protocol: str) -> None:
     print(f"[{protocol}] generating...")

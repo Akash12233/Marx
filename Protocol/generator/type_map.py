@@ -18,6 +18,10 @@ PRIMITIVE_TYPE_MAP = {
     "long":    "std::int64_t",
     "double":  "double",
     "bool":    "bool",
+    "int" :    "int",
+    "utcTimestamp": "std::int64_t",
+    "localMktDate": "std::int32_t",
+    "utcDateOnly":  "std::int32_t",
 }
 
 

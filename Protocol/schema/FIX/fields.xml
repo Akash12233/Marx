@@ -1,0 +1,101 @@
+<Fields>
+
+    <!-- Standard Header -->
+    <Field name="BeginString"         type="string"        tag="8"/>
+    <Field name="BodyLength"          type="int"           tag="9"/>
+    <Field name="MsgType"             type="string"        tag="35"/>
+    <Field name="SenderCompID"        type="string"        tag="49"/>
+    <Field name="TargetCompID"        type="string"        tag="56"/>
+    <Field name="MsgSeqNum"           type="int"           tag="34"/>
+    <Field name="SendingTime"         type="utcTimestamp"  tag="52"/>
+    <Field name="PossDupFlag"         type="bool"          tag="43"/>
+    <Field name="PossResend"          type="bool"          tag="97"/>
+    <Field name="OrigSendingTime"     type="utcTimestamp"  tag="122"/>
+
+    <!-- Standard Trailer -->
+    <Field name="CheckSum"            type="string"        tag="10"/>
+
+    <!-- Session -->
+    <Field name="EncryptMethod"       type="int"           tag="98"/>
+    <Field name="HeartBtInt"          type="int"           tag="108"/>
+    <Field name="ResetSeqNumFlag"     type="bool"          tag="141"/>
+    <Field name="TestReqID"           type="string"        tag="112"/>
+    <Field name="BeginSeqNo"          type="int"           tag="7"/>
+    <Field name="EndSeqNo"            type="int"           tag="16"/>
+    <Field name="NewSeqNo"            type="int"           tag="36"/>
+    <Field name="RefSeqNum"           type="int"           tag="45"/>
+    <Field name="Text"                type="string"        tag="58"/>
+
+    <!-- Order -->
+    <Field name="ClOrdID"             type="string"        tag="11"/>
+    <Field name="OrigClOrdID"         type="string"        tag="41"/>
+    <Field name="OrderID"             type="string"        tag="37"/>
+    <Field name="ExecID"              type="string"        tag="17"/>
+
+    <Field name="Account"             type="string"        tag="1"/>
+
+    <Field name="Side"                type="Side"          tag="54"/>
+    <Field name="OrdType"             type="OrdType"       tag="40"/>
+    <Field name="OrdStatus"           type="OrdStatus"     tag="39"/>
+    <Field name="ExecType"            type="ExecType"      tag="150"/>
+    <Field name="TimeInForce"         type="TimeInForce"   tag="59"/>
+
+    <Field name="OrderQty"            type="double"        tag="38"/>
+    <Field name="LeavesQty"           type="double"        tag="151"/>
+    <Field name="CumQty"              type="double"        tag="14"/>
+    <Field name="LastQty"             type="double"        tag="32"/>
+
+    <Field name="Price"               type="double"        tag="44"/>
+    <Field name="StopPx"              type="double"        tag="99"/>
+    <Field name="AvgPx"               type="double"        tag="6"/>
+    <Field name="LastPx"              type="double"        tag="31"/>
+
+    <Field name="TransactTime"        type="utcTimestamp"  tag="60"/>
+
+    <!-- Instrument -->
+    <Field name="Symbol"              type="string"        tag="55"/>
+    <Field name="SecurityID"          type="string"        tag="48"/>
+    <Field name="SecurityIDSource"    type="string"        tag="22"/>
+    <Field name="SecurityExchange"    type="string"        tag="207"/>
+    <Field name="SecurityType"        type="string"        tag="167"/>
+    <Field name="Currency"            type="string"        tag="15"/>
+
+    <!-- Execution -->
+    <Field name="ExecTransType"       type="char"          tag="20"/>
+    <Field name="ExecRefID"           type="string"        tag="19"/>
+    <Field name="OrdRejReason"        type="OrdRejReason"  tag="103"/>
+    <Field name="ExecRestatementReason" type="int"         tag="378"/>
+    <Field name="ExecInst"            type="ExecInst"      tag="18"/>
+
+    <!-- Market Data -->
+    <Field name="MDReqID"             type="string"        tag="262"/>
+    <Field name="SubscriptionRequestType" type="char"      tag="263"/>
+    <Field name="MarketDepth"         type="int"           tag="264"/>
+    <Field name="MDUpdateType"        type="int"           tag="265"/>
+    <Field name="NoMDEntryTypes"      type="int"           tag="267"/>
+    <Field name="NoMDEntries"         type="int"           tag="268"/>
+    <Field name="MDEntryType"         type="char"          tag="269"/>
+    <Field name="MDEntryPx"           type="double"        tag="270"/>
+    <Field name="MDEntrySize"         type="double"        tag="271"/>
+    <Field name="MDEntryDate"         type="utcDateOnly"   tag="272"/>
+    <Field name="MDEntryTime"         type="utcTimestamp"  tag="273"/>
+    <Field name="NoRelatedSym"         type="int"          tag="146"/>
+
+    <!-- Reject -->
+    <Field name="SessionRejectReason" type="int"           tag="373"/>
+    <Field name="BusinessRejectReason" type="int"          tag="380"/>
+    <Field name="BusinessRejectRefID" type="string"        tag="379"/>
+    <Field name="RefTagID"            type="int"           tag="371"/>
+    <Field name="RefMsgType"          type="string"        tag="372"/>
+
+    <!-- Sequence -->
+    <Field name="GapFillFlag"         type="bool"          tag="123"/>
+
+    <!-- Misc -->
+    <Field name="TradeDate"           type="localMktDate"  tag="75"/>
+    <Field name="SettlDate"           type="localMktDate"  tag="64"/>
+    <Field name="ExDestination"       type="string"        tag="100"/>
+    <Field name="HandlInst"           type="char"          tag="21"/>
+    <Field name="ClientID"            type="string"        tag="109"/>
+
+</Fields>
