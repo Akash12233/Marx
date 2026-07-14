@@ -1,0 +1,153 @@
+<Messages>
+
+    <!-- ====================== -->
+    <!-- Admin Messages -->
+    <!-- ====================== -->
+
+    <Message name="Heartbeat" >
+        <Field name="TestReqID" required="false"/>
+    </Message>
+
+    <Message name="TestRequest" >
+        <Field name="TestReqID" required="true"/>
+    </Message>
+
+    <Message name="ResendRequest">
+        <Field name="BeginSeqNo" required="true"/>
+        <Field name="EndSeqNo" required="true"/>
+    </Message>
+
+    <Message name="Reject" >
+        <Field name="RefSeqNum" required="true"/>
+        <Field name="RefTagID" required="false"/>
+        <Field name="RefMsgType" required="false"/>
+        <Field name="SessionRejectReason" required="false"/>
+        <Field name="Text" required="false"/>
+    </Message>
+
+    <Message name="SequenceReset" >
+        <Field name="GapFillFlag" required="false"/>
+        <Field name="NewSeqNo" required="true"/>
+    </Message>
+
+    <Message name="Logout" >
+        <Field name="Text" required="false"/>
+    </Message>
+
+    <Message name="Logon" >
+        <Field name="EncryptMethod" required="true"/>
+        <Field name="HeartBtInt" required="true"/>
+        <Field name="ResetSeqNumFlag" required="false"/>
+    </Message>
+
+
+    <!-- ====================== -->
+    <!-- Trading Messages -->
+    <!-- ====================== -->
+
+    <Message name="NewOrderSingle" >
+        <Field name="ClOrdID" required="true"/>
+        <Field name="Account" required="false"/>
+        <Field name="HandlInst" required="true"/>
+        <Field name="Symbol" required="true"/>
+        <Field name="SecurityID" required="false"/>
+        <Field name="Side" required="true"/>
+        <Field name="TransactTime" required="true"/>
+        <Field name="OrdType" required="true"/>
+        <Field name="OrderQty" required="true"/>
+        <Field name="Price" required="false"/>
+        <Field name="StopPx" required="false"/>
+        <Field name="TimeInForce" required="false"/>
+        <Field name="Currency" required="false"/>
+        <Field name="ExecInst" required="false"/>
+    </Message>
+
+    <Message name="ExecutionReport" >
+        <Field name="OrderID" required="true"/>
+        <Field name="ClOrdID" required="false"/>
+        <Field name="OrigClOrdID" required="false"/>
+        <Field name="ExecID" required="true"/>
+        <Field name="ExecType" required="true"/>
+        <Field name="OrdStatus" required="true"/>
+        <Field name="OrdRejReason" required="false"/>
+        <Field name="Symbol" required="true"/>
+        <Field name="Side" required="true"/>
+        <Field name="OrderQty" required="false"/>
+        <Field name="LeavesQty" required="true"/>
+        <Field name="CumQty" required="true"/>
+        <Field name="LastQty" required="false"/>
+        <Field name="LastPx" required="false"/>
+        <Field name="AvgPx" required="true"/>
+        <Field name="Price" required="false"/>
+        <Field name="TransactTime" required="false"/>
+        <Field name="Text" required="false"/>
+    </Message>
+
+    <Message name="OrderCancelRequest" >
+        <Field name="OrigClOrdID" required="true"/>
+        <Field name="ClOrdID" required="true"/>
+        <Field name="Symbol" required="true"/>
+        <Field name="Side" required="true"/>
+        <Field name="TransactTime" required="true"/>
+        <Field name="OrderQty" required="false"/>
+    </Message>
+
+    <Message name="OrderCancelReplaceRequest" >
+        <Field name="OrigClOrdID" required="true"/>
+        <Field name="ClOrdID" required="true"/>
+        <Field name="Symbol" required="true"/>
+        <Field name="Side" required="true"/>
+        <Field name="TransactTime" required="true"/>
+        <Field name="OrdType" required="true"/>
+        <Field name="OrderQty" required="true"/>
+        <Field name="Price" required="false"/>
+        <Field name="StopPx" required="false"/>
+        <Field name="TimeInForce" required="false"/>
+    </Message>
+
+    <Message name="OrderCancelReject" >
+        <Field name="OrderID" required="true"/>
+        <Field name="ClOrdID" required="true"/>
+        <Field name="OrigClOrdID" required="false"/>
+        <Field name="OrdStatus" required="true"/>
+        <Field name="Text" required="false"/>
+    </Message>
+
+    <Message name="OrderStatusRequest" >
+        <Field name="ClOrdID" required="false"/>
+        <Field name="OrderID" required="false"/>
+        <Field name="Symbol" required="true"/>
+        <Field name="Side" required="true"/>
+    </Message>
+
+
+    <!-- ====================== -->
+    <!-- Market Data -->
+    <!-- ====================== -->
+
+    <Message name="MarketDataRequest" >
+        <Field name="MDReqID" required="true"/>
+        <Field name="SubscriptionRequestType" required="true"/>
+        <Field name="MarketDepth" required="true"/>
+        <Field name="MDUpdateType" required="false"/>
+        <Field name="NoMDEntryTypes" required="true"/>
+        <Field name="NoRelatedSym" required="true"/>
+    </Message>
+
+    <Message name="MarketDataSnapshotFullRefresh" >
+        <Field name="Symbol" required="true"/>
+        <Field name="SecurityID" required="false"/>
+        <Field name="NoMDEntries" required="true"/>
+    </Message>
+
+    <Message name="MarketDataIncrementalRefresh" >
+        <Field name="MDReqID" required="false"/>
+        <Field name="NoMDEntries" required="true"/>
+    </Message>
+
+    <Message name="MarketDataRequestReject" >
+        <Field name="MDReqID" required="true"/>
+        <Field name="Text" required="false"/>
+    </Message>
+
+</Messages>

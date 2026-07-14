@@ -1,0 +1,34 @@
+// AUTO-GENERATED FILE - DO NOT EDIT BY HAND
+// Generated from payloads.xml by protocol/generator/generate.py
+#pragma once
+
+#include "{{ protocol }}/fields/Fields.hpp"
+
+namespace {{ protocol }}::messages {
+
+class {{ message.name }} {
+public:
+    {{ message.name }}() = default;
+
+{% for fr in message.field_refs %}
+    const {{ protocol }}::fields::{{ fr.name }}& get{{ fr.name }}() const { return {{ fr.member_name }}_; }
+    void set{{ fr.name }}(const {{ protocol }}::fields::{{ fr.name }}& v) { {{ fr.member_name }}_ = v; }
+{% endfor %}
+
+    // Field metadata (required / defaultValue) is intentionally not enforced
+    // here - validation happens in the decoder / execution engine, which
+    // reads {{ message.name }}::Meta below.
+    struct FieldMeta { const char* name; bool required; };
+    static constexpr FieldMeta Meta[] = {
+{% for fr in message.field_refs %}
+        { "{{ fr.name }}", {{ "true" if fr.required else "false" }} },
+{% endfor %}
+    };
+
+private:
+{% for fr in message.field_refs %}
+    {{ protocol }}::fields::{{ fr.name }} {{ fr.member_name }}_{% if fr.init_expr %}{ {{ fr.init_expr }} }{% endif %};
+{% endfor %}
+};
+
+} // namespace {{ protocol }}::messages

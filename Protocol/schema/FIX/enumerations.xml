@@ -1,0 +1,158 @@
+<Enumerations>
+
+    <Enum name="Side" type="char">
+        <Value name="BUY"                 raw="1"/>
+        <Value name="SELL"                raw="2"/>
+        <Value name="BUY_MINUS"           raw="3"/>
+        <Value name="SELL_PLUS"           raw="4"/>
+        <Value name="SELL_SHORT"          raw="5"/>
+        <Value name="SELL_SHORT_EXEMPT"   raw="6"/>
+        <Value name="UNDISCLOSED"         raw="7"/>
+        <Value name="CROSS"               raw="8"/>
+        <Value name="CROSS_SHORT"         raw="9"/>
+        <Value name="CROSS_SHORT_EXEMPT"  raw="A"/>
+        <Value name="AS_DEFINED"          raw="B"/>
+        <Value name="OPPOSITE"            raw="C"/>
+        <Value name="SUBSCRIBE"           raw="D"/>
+        <Value name="REDEEM"              raw="E"/>
+        <Value name="LEND"                raw="F"/>
+        <Value name="BORROW"              raw="G"/>
+    </Enum>
+
+    <Enum name="OrdType" type="char">
+        <Value name="MARKET"                             raw="1"/>
+        <Value name="LIMIT"                              raw="2"/>
+        <Value name="STOP"                               raw="3"/>
+        <Value name="STOP_LIMIT"                         raw="4"/>
+        <Value name="MARKET_ON_CLOSE"                    raw="5"/>
+        <Value name="WITH_OR_WITHOUT"                    raw="6"/>
+        <Value name="LIMIT_OR_BETTER"                    raw="7"/>
+        <Value name="LIMIT_WITH_OR_WITHOUT"              raw="8"/>
+        <Value name="ON_BASIS"                           raw="9"/>
+        <Value name="ON_CLOSE"                           raw="A"/>
+        <Value name="LIMIT_ON_CLOSE"                     raw="B"/>
+        <Value name="FOREX_MARKET"                       raw="C"/>
+        <Value name="PREVIOUSLY_QUOTED"                  raw="D"/>
+        <Value name="PREVIOUSLY_INDICATED"               raw="E"/>
+        <Value name="FOREX_LIMIT"                        raw="F"/>
+        <Value name="FOREX_SWAP"                         raw="G"/>
+        <Value name="FOREX_PREVIOUSLY_QUOTED"            raw="H"/>
+        <Value name="FUNARI"                             raw="I"/>
+        <Value name="MARKET_IF_TOUCHED"                  raw="J"/>
+        <Value name="MARKET_WITH_LEFTOVER_AS_LIMIT"      raw="K"/>
+        <Value name="PREVIOUS_FUND_VALUATION_POINT"      raw="L"/>
+        <Value name="NEXT_FUND_VALUATION_POINT"          raw="M"/>
+        <Value name="PEGGED"                             raw="P"/>
+    </Enum>
+
+    <Enum name="TimeInForce" type="char">
+        <Value name="DAY"                 raw="0"/>
+        <Value name="GOOD_TILL_CANCEL"    raw="1"/>
+        <Value name="AT_THE_OPENING"      raw="2"/>
+        <Value name="IMMEDIATE_OR_CANCEL" raw="3"/>
+        <Value name="FILL_OR_KILL"        raw="4"/>
+        <Value name="GOOD_TILL_CROSSING"  raw="5"/>
+        <Value name="GOOD_TILL_DATE"      raw="6"/>
+        <Value name="AT_THE_CLOSE"        raw="7"/>
+    </Enum>
+
+    <Enum name="OrdStatus" type="char">
+        <Value name="NEW"                   raw="0"/>
+        <Value name="PARTIALLY_FILLED"      raw="1"/>
+        <Value name="FILLED"                raw="2"/>
+        <Value name="DONE_FOR_DAY"          raw="3"/>
+        <Value name="CANCELED"              raw="4"/>
+        <Value name="REPLACED"              raw="5"/>
+        <Value name="PENDING_CANCEL"        raw="6"/>
+        <Value name="STOPPED"               raw="7"/>
+        <Value name="REJECTED"              raw="8"/>
+        <Value name="SUSPENDED"             raw="9"/>
+        <Value name="PENDING_NEW"           raw="A"/>
+        <Value name="CALCULATED"            raw="B"/>
+        <Value name="EXPIRED"               raw="C"/>
+        <Value name="ACCEPTED_FOR_BIDDING"  raw="D"/>
+        <Value name="PENDING_REPLACE"       raw="E"/>
+    </Enum>
+
+    <Enum name="ExecType" type="char">
+        <Value name="NEW"               raw="0"/>
+        <Value name="PARTIAL_FILL"      raw="1"/>
+        <Value name="FILL"              raw="2"/>
+        <Value name="DONE_FOR_DAY"      raw="3"/>
+        <Value name="CANCELED"          raw="4"/>
+        <Value name="REPLACE"           raw="5"/>
+        <Value name="PENDING_CANCEL"    raw="6"/>
+        <Value name="STOPPED"           raw="7"/>
+        <Value name="REJECTED"          raw="8"/>
+        <Value name="SUSPENDED"         raw="9"/>
+        <Value name="PENDING_NEW"       raw="A"/>
+        <Value name="CALCULATED"        raw="B"/>
+        <Value name="EXPIRED"           raw="C"/>
+        <Value name="RESTATED"          raw="D"/>
+        <Value name="PENDING_REPLACE"   raw="E"/>
+        <Value name="TRADE"             raw="F"/>
+        <Value name="TRADE_CORRECT"     raw="G"/>
+        <Value name="TRADE_CANCEL"      raw="H"/>
+        <Value name="ORDER_STATUS"      raw="I"/>
+    </Enum>
+
+    <Enum name="OrdRejReason" type="int">
+        <Value name="BROKER_OPTION"                      raw="0"/>
+        <Value name="UNKNOWN_SYMBOL"                     raw="1"/>
+        <Value name="EXCHANGE_CLOSED"                    raw="2"/>
+        <Value name="ORDER_EXCEEDS_LIMIT"                raw="3"/>
+        <Value name="TOO_LATE_TO_ENTER"                  raw="4"/>
+        <Value name="UNKNOWN_ORDER"                      raw="5"/>
+        <Value name="DUPLICATE_ORDER"                    raw="6"/>
+        <Value name="DUPLICATE_VERBAL_ORDER"             raw="7"/>
+        <Value name="STALE_ORDER"                        raw="8"/>
+        <Value name="TRADE_ALONG_REQUIRED"               raw="9"/>
+        <Value name="INVALID_INVESTOR_ID"                raw="10"/>
+        <Value name="UNSUPPORTED_ORDER_CHARACTERISTIC"   raw="11"/>
+        <Value name="SURVEILLANCE_OPTION"                raw="12"/>
+        <Value name="INCORRECT_QUANTITY"                 raw="13"/>
+        <Value name="INCORRECT_ALLOCATED_QUANTITY"       raw="14"/>
+        <Value name="UNKNOWN_ACCOUNT"                    raw="15"/>
+        <Value name="OTHER"                              raw="99"/>
+    </Enum>
+
+    <Enum name="ExecInst" type="char">
+        <Value name="STAY_ON_OFFERSIDE"                  raw="0"/>
+        <Value name="NOT_HELD"                           raw="1"/>
+        <Value name="WORK"                               raw="2"/>
+        <Value name="GO_ALONG"                           raw="3"/>
+        <Value name="OVER_THE_DAY"                       raw="4"/>
+        <Value name="HELD"                               raw="5"/>
+        <Value name="PARTICIPATE_DONT_INITIATE"          raw="6"/>
+        <Value name="STRICT_SCALE"                       raw="7"/>
+        <Value name="TRY_TO_SCALE"                       raw="8"/>
+        <Value name="STAY_ON_BIDSIDE"                    raw="9"/>
+        <Value name="NO_CROSS"                           raw="A"/>
+        <Value name="OK_TO_CROSS"                        raw="B"/>
+        <Value name="CALL_FIRST"                         raw="C"/>
+        <Value name="PERCENT_OF_VOLUME"                  raw="D"/>
+        <Value name="DO_NOT_INCREASE"                    raw="E"/>
+        <Value name="DO_NOT_REDUCE"                      raw="F"/>
+        <Value name="ALL_OR_NONE"                        raw="G"/>
+        <Value name="INSTITUTIONS_ONLY"                  raw="H"/>
+        <Value name="LAST_PEG"                           raw="I"/>
+        <Value name="MID_PRICE_PEG"                      raw="J"/>
+        <Value name="NON_NEGOTIABLE"                     raw="K"/>
+        <Value name="OPENING_PEG"                        raw="L"/>
+        <Value name="MARKET_PEG"                         raw="M"/>
+        <Value name="PRIMARY_PEG"                        raw="N"/>
+        <Value name="SUSPEND"                            raw="O"/>
+        <Value name="FIXED_PEG_TO_LOCAL_BEST_BID_OR_OFFER" raw="P"/>
+        <Value name="CUSTOMER_DISPLAY_INSTRUCTION"       raw="Q"/>
+        <Value name="NETTING"                            raw="R"/>
+        <Value name="PEG_TO_VWAP"                        raw="S"/>
+        <Value name="TRADE_ALONG"                        raw="T"/>
+        <Value name="TRY_TO_STOP"                        raw="U"/>
+        <Value name="CANCEL_IF_NOT_BEST"                 raw="V"/>
+        <Value name="TRAILING_STOP_PEG"                  raw="W"/>
+        <Value name="STRICT_LIMIT"                       raw="X"/>
+        <Value name="IGNORE_PRICE_VALIDITY_CHECKS"       raw="Y"/>
+        <Value name="PEG_TO_LIMIT_PRICE"                 raw="Z"/>
+    </Enum>
+
+</Enumerations>
