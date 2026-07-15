@@ -123,3 +123,8 @@ coverage/
 # ==========================================================
 gmon.out
 perf.data*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class

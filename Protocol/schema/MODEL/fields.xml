@@ -1,0 +1,82 @@
+<Fields>
+
+    <!-- Identity -->
+    <Field name="ClientOrderId"            type="string"        tag="10001"/>
+    <Field name="VenueOrderId"             type="string"        tag="10002"/>
+    <Field name="ParentOrderId"            type="string"        tag="10003"/>
+    <Field name="ExecutionId"              type="string"        tag="10004"/>
+    <Field name="TradeId"                  type="string"        tag="10005"/>
+    <Field name="RequestId"                type="string"        tag="10006"/>
+    <Field name="CorrelationId"            type="string"        tag="10007"/>
+
+    <!-- Client -->
+    <Field name="Account"                  type="string"        tag="10008"/>
+    <Field name="ClientId"                 type="string"        tag="10009"/>
+    <Field name="BrokerId"                 type="string"        tag="10010"/>
+
+    <!-- Instrument -->
+    <Field name="Symbol"                   type="string"        tag="10011"/>
+    <Field name="SecurityId"               type="string"        tag="10012"/>
+    <Field name="SecurityType"             type="string"        tag="10013"/>
+    <Field name="Exchange"                 type="string"        tag="10014"/>
+    <Field name="Currency"                 type="string"        tag="10015"/>
+
+    <!-- Order -->
+    <Field name="Side"                     type="Side"          tag="10016"/>
+    <Field name="OrderType"                type="OrdType"       tag="10017"/>
+    <Field name="TimeInForce"              type="TimeInForce"   tag="10018"/>
+    <Field name="ExecutionInstruction"     type="ExecInst"      tag="10019"/>
+
+    <!-- Quantity -->
+    <Field name="OrderQty"                 type="int"        tag="10020"/>
+    <Field name="CumQty"                   type="int"        tag="10021"/>
+    <Field name="LeavesQty"                type="int"        tag="10022"/>
+    <Field name="LastQty"                  type="int"        tag="10023"/>
+    <Field name="FilledQuantity"           type="int"        tag="10052"/>
+    <Field name="RemainingQuantity"        type="int"        tag="10053"/>
+    <Field name="LastFillQuantity"         type="int"        tag="10054"/>
+    <Field name="LastFillPrice"            type="int"        tag="10056"/>
+
+    <!-- Price -->
+    <Field name="Price"                    type="double"        tag="10024"/>
+    <Field name="StopPrice"                type="double"        tag="10025"/>
+    <Field name="LastPrice"                type="double"        tag="10026"/>
+    <Field name="AveragePrice"             type="double"        tag="10027"/>
+
+    <!-- Status -->
+    <Field name="OrderStatus"              type="OrdStatus"     tag="10028"/>
+    <Field name="ExecutionType"            type="ExecType"      tag="10029"/>
+    <Field name="RejectReason"             type="string"        tag="10030"/>
+    <Field name="RejectCode"               type="int"           tag="10031"/>
+    <Field name="Text"                     type="string"        tag="10032"/>
+
+    <!-- Time -->
+    <Field name="CreatedTime"              type="utcTimestamp"     tag="10033"/>
+    <Field name="TransactTime"             type="utcTimestamp"     tag="10034"/>
+    <Field name="VenueTime"                type="utcTimestamp"     tag="10035"/>
+    <Field name="TradeTime"                type="utcTimestamp"     tag="10036"/>
+    <Field name="ExpireTime"               type="utcTimestamp"     tag="10037"/>
+
+    <!-- Routing -->
+    <Field name="Sender"                   type="string"        tag="10038"/>
+    <Field name="Receiver"                 type="string"        tag="10039"/>
+    <Field name="Venue"                    type="string"        tag="10040"/>
+    <Field name="Strategy"                 type="string"        tag="10041"/>
+    <Field name="ExDestination"            type="string"        tag="10051"/>
+
+    <!-- Risk -->
+    <Field name="MaxFloor"                 type="double"        tag="10042"/>
+    <Field name="MinQty"                   type="double"        tag="10043"/>
+    <Field name="DisplayQty"               type="double"        tag="10044"/>
+    <Field name="Capacity"                 type="string"        tag="10045"/>
+
+    <!-- Replace -->
+    <Field name="OriginalClientOrderId"    type="string"        tag="10046"/>
+    <Field name="OriginalVenueOrderId"     type="string"        tag="10047"/>
+
+    <!-- Misc -->
+    <Field name="SequenceNumber"           type="long"          tag="10048"/>
+    <Field name="PossDupFlag"              type="bool"          tag="10049"/>
+    <Field name="PossResend"               type="bool"          tag="10050"/>
+
+</Fields>

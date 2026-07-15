@@ -1,0 +1,50 @@
+<Fields>
+
+    <!-- Order Identity -->
+    <Field name="UserRefNum"                     type="uint32"                         tag="20001"/>
+    <Field name="ExistingUserRefNum"             type="uint32"                         tag="20002"/>
+    <Field name="ReplacementUserRefNum"          type="uint32"                         tag="20003"/>
+    <Field name="OriginalUserRefNum"             type="uint32"                         tag="20004"/>
+    <Field name="OrderReferenceNumber"           type="uint64"                         tag="20005"/>
+    <Field name="ClOrdID"                        type="string"                         tag="20006"/>
+
+    <!-- Instrument -->
+    <Field name="Symbol"                         type="string"                         tag="20007"/>
+
+    <!-- Order Attributes -->
+    <Field name="Side"                           type="Side"                           tag="20008"/>
+    <Field name="Quantity"                       type="uint32"                         tag="20009"/>
+    <Field name="CanceledQuantity"               type="uint32"                         tag="20010"/>
+    <Field name="RemainingQuantity"              type="uint32"                         tag="20011"/>
+    <Field name="ExecutedQuantity"               type="uint32"                         tag="20012"/>
+
+    <Field name="Price"                          type="double"                          tag="20013"/>
+    <Field name="TimeInForce"                    type="TimeInForce"                    tag="20014"/>
+
+    <Field name="Display"                        type="Display"                        tag="20015"/>
+    <Field name="Capacity"                       type="Capacity"                       tag="20016"/>
+    <Field name="IntermarketSweepEligibility"    type="IntermarketSweepEligibility"    tag="20017"/>
+    <Field name="CrossType"                      type="CrossType"                      tag="20018"/>
+
+    <Field name="MinQty"                         type="uint32"                         tag="20019"/>
+    <Field name="MaxFloor"                       type="uint32"                         tag="20020"/>
+    <Field name="PegOffset"                      type="double"                         tag="20021"/>
+    <Field name="ExpireTime"                     type="utcTimestamp"                      tag="20022"/>
+
+    <!-- Client -->
+    <Field name="Firm"                           type="string"                         tag="20023"/>
+    <Field name="Account"                        type="string"                         tag="20024"/>
+
+    <!-- Execution -->
+    <Field name="utcTimestamp"                   type="utcTimestamp"                      tag="20025"/>
+    <Field name="OrderState"                     type="OrderState"                     tag="20026"/>
+    <Field name="LiquidityFlag"                  type="LiquidityFlag"                  tag="20027"/>
+    <Field name="MatchNumber"                    type="uint64"                         tag="20028"/>
+
+    <!-- Administrative -->
+    <Field name="EventCode"                      type="EventCode"                      tag="20029"/>
+    <Field name="Reason"                         type="RejectReason"                   tag="20030"/>
+    <Field name="Scope"                          type="MassCancelScope"                tag="20031"/>
+    <Field name="Timestamp"                      type="utcTimestamp"                   tag="20032"/>
+
+</Fields>

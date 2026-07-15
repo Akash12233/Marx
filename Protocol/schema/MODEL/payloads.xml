@@ -1,0 +1,187 @@
+<Messages>
+    <Message name="Order">
+
+        <!-- Identity -->
+        <Field name="ClientOrderId"      requried= "false"/>
+        <Field name="VenueOrderId"       requried= "false"/>
+        <Field name="ParentOrderId"      requried= "false"/>
+        <Field name="ExecutionId"        requried= "false"/>
+
+        <!-- Client -->
+        <Field name="Account"            required="false"/>
+        <Field name="ClientId"           required="false"/>
+
+        <!-- Instrument -->
+        <Field name="Symbol"             required="false"/>
+        <Field name="SecurityId"         required="false"/>
+        <Field name="Exchange"           required="false"/>
+        <Field name="Currency"           required="false"/>
+
+        <!-- Order -->
+        <Field name="Side"               required="false"/>
+        <Field name="OrderType"          required="false"/>
+        <Field name="TimeInForce"        required="false"/>
+
+        <Field name="OrderQty"           required="false"/>
+        <Field name="Price"              required="false"/>
+        <Field name="StopPrice"          required="false"/>
+
+        <!-- State -->
+        <Field name="OrderStatus"        required="false"/>
+        <Field name="ExecutionType"      required="false"/>
+
+        <!-- Fill -->
+        <Field name="CumQty"             required="false"/>
+        <Field name="LeavesQty"          required="false"/>
+        <Field name="FilledQuantity"     required="false"/>
+        <Field name="RemainingQuantity"  required="false"/>
+        <Field name="AveragePrice"       required="false"/>
+        <Field name="LastFillQuantity"   required="false"/>
+        <Field name="LastFillPrice"      required="false"/>
+
+        <!-- Timing -->
+        <Field name="CreatedTime"        required="false"/>
+        <Field name="TransactTime"       required="false"/>
+        <Field name="VenueTime"          required="false"/>
+
+        <!-- Misc -->
+        <Field name="Text"               required="false"/>
+        <Field name="RejectReason"       required="false"/>
+
+    </Message>
+
+    <Message name="NewOrderRequest">
+        <Field name="ClientOrderId"     required="false" />
+        <Field name="Account"           required="false"/>
+        <Field name="Symbol"            required="false"/>
+        <Field name="Side"              required="false"/>
+        <Field name="OrderType"         required="false"/>
+        <Field name="OrderQty"          required="false"/>
+        <Field name="TimeInForce"       required="false"/>
+        <Field name="TransactTime"      required="false"/>
+
+        <!-- Optional -->
+        <Field name="Price"             required="false"/>
+        <Field name="StopPrice"         required="false"/>
+        <Field name="ExecutionInstruction" required="false"/>
+        <Field name="Currency"          required="false"/>
+    </Message>
+
+    <Message name="CreateOrderExecution">
+
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="OrderQty"          required="false"/>
+        <Field name="FilledQuantity"    required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="Text"              required="false"/>
+        <Field name="RejectReason"      required="false"/>
+
+    </Message>
+
+    <Message name="CreateOrderReject">
+
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="OrderQty"          required="false"/>
+        <Field name="FilledQuantity"    required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="Text"              required="false"/>
+        <Field name="RejectReason"      required="false"/>
+
+    </Message>
+
+    <Message name="ReplaceOrderRequest" required="false">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="OriginalClientOrderId" required="false"/>
+        <Field name="OrderQty"          required="false"/>
+        <Field name="Price"             required="false"/>
+        <Field name="StopPrice"         required="false"/>
+        <Field name="TimeInForce"       required="false"/>
+    </Message>
+
+    <Message name="ReplaceOrderExecution">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="OrderQty"          required="false"/>
+        <Field name="FilledQuantity"    required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="RejectReason"      required="false"/>
+    </Message>
+
+    <Message name="ReplaceOrderReject">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="OrderQty"          required="false"/>
+        <Field name="FilledQuantity"    required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="RejectReason"      required="false"/>
+    </Message>
+
+    <Message name="CancelOrderRequest"  required="false">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="OriginalClientOrderId" required="false"/>
+        <Field name="Symbol"            required="false"/>
+        <Field name="Side"              required="false"/>
+    </Message>
+
+    <Message name="CancelOrderExecution">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="FilledQuantity"    required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="RejectReason"      required="false"/>
+
+    </Message>
+
+    <Message name="CancelOrderReject">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="FilledQuantity"    required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="RejectReason"      required="false"/>
+
+    </Message>
+
+    <Message name="FillOrderExecution">
+        <Field name="ClientOrderId"     required="false"/>
+        <Field name="VenueOrderId"      required="false"/>
+        <Field name="ExecutionId"       required="false"/>
+        <Field name="ExecutionType"     required="false"/>
+        <Field name="OrderStatus"       required="false"/>
+        <Field name="LastFillQuantity"  required="false"/>
+        <Field name="LastFillPrice"     required="false"/>
+        <Field name="CumQty"            required="false"/>
+        <Field name="LeavesQty"         required="false"/>
+        <Field name="AveragePrice"      required="false"/>
+        <Field name="TradeId"           required="false"/>
+        <Field name="TradeTime"         required="false"/>
+    </Message>
+
+
+
+</Messages>

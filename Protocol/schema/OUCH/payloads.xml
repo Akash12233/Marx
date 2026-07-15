@@ -1,0 +1,128 @@
+<Messages>
+
+    <!-- ========================= -->
+    <!-- Client -> Exchange -->
+    <!-- ========================= -->
+
+    <Message name="EnterOrder">
+        <Field name="UserRefNum" required="false"/>
+        <Field name="Side" required="false"/>
+        <Field name="Quantity" required="false"/>
+        <Field name="Symbol" required="false"/>
+        <Field name="Price" required="false"/>
+        <Field name="TimeInForce" required="false"/>
+        <Field name="Display" required="false"/>
+        <Field name="Capacity" required="false"/>
+        <Field name="IntermarketSweepEligibility" required="false"/>
+        <Field name="CrossType" required="false"/>
+        <Field name="ClOrdID" required="false"/>
+        <Field name="Firm" required="false"/>
+        <Field name="MinQty" required="false"/>
+        <Field name="MaxFloor" required="false"/>
+        <Field name="PegOffset" required="false"/>
+        <Field name="ExpireTime" required="false"/>
+    </Message>
+
+    <Message name="ReplaceOrderRequest">
+        <Field name="ExistingUserRefNum" required="false"/>
+        <Field name="ReplacementUserRefNum" required="false"/>
+        <Field name="Quantity" required="false"/>
+        <Field name="Price" required="false"/>
+        <Field name="TimeInForce" required="false"/>
+        <Field name="Display" required="false"/>
+        <Field name="IntermarketSweepEligibility" required="false"/>
+    </Message>
+
+    <Message name="CancelOrderRequest">
+        <Field name="UserRefNum" required="false"/>
+        <Field name="Quantity" required="false"/>
+    </Message>
+
+    <Message name="ModifyOrderRequest">
+        <Field name="UserRefNum" required="false"/>
+        <Field name="Price" required="false"/>
+        <Field name="Display" required="false"/>
+        <Field name="TimeInForce" required="false"/>
+    </Message>
+
+    <Message name="MassCancelRequest">
+        <Field name="Scope" required="false"/>
+    </Message>
+
+
+    <Message name="AccountQueryRequest">
+        <Field name="Account" required="false"/>
+    </Message>
+
+
+
+    <!-- ========================= -->
+    <!-- Exchange -> Client -->
+    <!-- ========================= -->
+
+    <Message name="SystemEvent">
+        <Field name="Timestamp" required="false"/>
+        <Field name="EventCode" required="false"/>
+    </Message>
+
+    <Message name="OrderAccepted">
+        <Field name="Timestamp" required="false"/>
+        <Field name="UserRefNum" required="false"/>
+        <Field name="OrderReferenceNumber" required="false"/>
+        <Field name="Side" required="false"/>
+        <Field name="Symbol" required="false"/>
+        <Field name="Quantity" required="false"/>
+        <Field name="Price" required="false"/>
+        <Field name="TimeInForce" required="false"/>
+        <Field name="Display" required="false"/>
+        <Field name="OrderState" required="false"/>
+        <Field name="ClOrdID" required="false"/>
+    </Message>
+
+    <Message name="OrderReplaced">
+        <Field name="Timestamp" required="false"/>
+        <Field name="OriginalUserRefNum" required="false"/>
+        <Field name="ReplacementUserRefNum" required="false"/>
+        <Field name="OrderReferenceNumber" required="false"/>
+        <Field name="Quantity" required="false"/>
+        <Field name="Price" required="false"/>
+        <Field name="OrderState" required="false"/>
+    </Message>
+
+    <Message name="OrderCanceled">
+        <Field name="Timestamp" required="false"/>
+        <Field name="UserRefNum" required="false"/>
+        <Field name="CanceledQuantity" required="false"/>
+        <Field name="RemainingQuantity" required="false"/>
+        <Field name="Reason" required="false"/>
+    </Message>
+
+    <Message name="OrderExecuted">
+        <Field name="Timestamp" required="false"/>
+        <Field name="UserRefNum" required="false"/>
+        <Field name="ExecutedQuantity" required="false"/>
+        <Field name="Price" required="false"/>
+        <Field name="LiquidityFlag" required="false"/>
+        <Field name="MatchNumber" required="false"/>
+    </Message>
+
+    <Message name="BrokenTrade">
+        <Field name="Timestamp" required="false"/>
+        <Field name="UserRefNum" required="false"/>
+        <Field name="MatchNumber" required="false"/>
+        <Field name="Reason" required="false"/>
+    </Message>
+
+    <Message name="Rejected">
+        <Field name="Timestamp" required="false"/>
+        <Field name="UserRefNum" required="false"/>
+        <Field name="Reason" required="false"/>
+        <Field name="ClOrdID" required="false"/>
+    </Message>
+
+    <Message name="CancelPending">
+        <Field name="Timestamp" required="false"/>
+        <Field name="UserRefNum" required="false"/>
+    </Message>
+
+</Messages>
