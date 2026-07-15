@@ -1,0 +1,100 @@
+<Enumerations>
+    <Enum name="Side" type="char">
+        <Value name="BUY"  raw="B"/>
+        <Value name="SELL" raw="S"/>
+        <Value name="SELL_SHORT" raw="T"/>
+        <Value name="SELL_SHORT_EXEMPT" raw="E"/>
+    </Enum>
+    
+    <Enum name="TimeInForce" type="char">
+        <Value name="DAY"                  raw="0"/>
+        <Value name="GOOD_TILL_CANCEL"     raw="1"/>
+        <Value name="AT_THE_OPENING"       raw="2"/>
+        <Value name="IMMEDIATE_OR_CANCEL"  raw="3"/>
+        <Value name="FILL_OR_KILL"         raw="4"/>
+        <Value name="GOOD_TILL_CROSSING"   raw="5"/>
+        <Value name="GOOD_TILL_DATE"       raw="6"/>
+        <Value name="AT_THE_CLOSE"         raw="7"/>
+    </Enum>
+
+    <Enum name="Display" type="char">
+        <Value name="VISIBLE"      raw="Y"/>
+        <Value name="HIDDEN"       raw="N"/>
+        <Value name="ATTRIBUTED"   raw="A"/>
+    </Enum>
+
+    <Enum name="Capacity" type="char">
+        <Value name="AGENCY"        raw="A"/>
+        <Value name="PRINCIPAL"     raw="P"/>
+        <Value name="RISKLESS"      raw="R"/>
+        <Value name="OTHER"         raw="O"/>
+    </Enum>
+
+    <Enum name="IntermarketSweepEligibility" type="char">
+        <Value name="ELIGIBLE"      raw="Y"/>
+        <Value name="NOT_ELIGIBLE"  raw="N"/>
+    </Enum>
+
+    <Enum name="CrossType" type="char">
+        <Value name="CONTINUOUS_MARKET" raw="N"/>
+        <Value name="OPENING_CROSS"     raw="O"/>
+        <Value name="CLOSING_CROSS"     raw="C"/>
+        <Value name="IPO_CROSS"         raw="I"/>
+        <Value name="HALT_CROSS"        raw="H"/>
+        <Value name="RETAIL_CROSS"      raw="R"/>
+    </Enum>
+
+    <Enum name="OrderState" type="char">
+        <Value name="NEW"                 raw="0"/>
+        <Value name="LIVE"                raw="1"/>
+        <Value name="PARTIALLY_FILLED"    raw="2"/>
+        <Value name="FILLED"              raw="3"/>
+        <Value name="CANCEL_PENDING"      raw="4"/>
+        <Value name="CANCELED"            raw="5"/>
+        <Value name="REPLACED"            raw="6"/>
+        <Value name="REJECTED"            raw="7"/>
+        <Value name="EXPIRED"             raw="8"/>
+        <Value name="DONE_FOR_DAY"        raw="9"/>
+    </Enum>
+
+    <Enum name="LiquidityFlag" type="char">
+        <Value name="ADDED"               raw="A"/>
+        <Value name="REMOVED"             raw="R"/>
+        <Value name="OPENING_CROSS"       raw="O"/>
+        <Value name="CLOSING_CROSS"       raw="C"/>
+        <Value name="HALT_CROSS"          raw="H"/>
+        <Value name="RETAIL"              raw="T"/>
+        <Value name="UNKNOWN"             raw="U"/>
+    </Enum>
+
+    <Enum name="EventCode" type="char">
+        <Value name="START_OF_DAY"        raw="S"/>
+        <Value name="END_OF_DAY"          raw="E"/>
+        <Value name="START_OF_SYSTEM"     raw="A"/>
+        <Value name="END_OF_SYSTEM"       raw="Z"/>
+    </Enum>
+
+    <Enum name="RejectReason" type="int">
+        <Value name="UNKNOWN"                     raw="0"/>
+        <Value name="INVALID_SYMBOL"              raw="1"/>
+        <Value name="INVALID_PRICE"               raw="2"/>
+        <Value name="INVALID_QUANTITY"            raw="3"/>
+        <Value name="UNKNOWN_ORDER"               raw="4"/>
+        <Value name="DUPLICATE_ORDER"             raw="5"/>
+        <Value name="ORDER_ALREADY_CLOSED"        raw="6"/>
+        <Value name="INVALID_TIME_IN_FORCE"       raw="7"/>
+        <Value name="INVALID_SIDE"                raw="8"/>
+        <Value name="INSUFFICIENT_PERMISSIONS"    raw="9"/>
+        <Value name="RISK_REJECT"                 raw="10"/>
+        <Value name="SYSTEM_ERROR"                raw="11"/>
+    </Enum>
+
+    <Enum name="MassCancelScope" type="char">
+        <Value name="ALL_ORDERS"          raw="A"/>
+        <Value name="BY_SYMBOL"           raw="S"/>
+        <Value name="BY_SIDE"             raw="D"/>
+        <Value name="BY_ACCOUNT"          raw="C"/>
+        <Value name="BY_SESSION"          raw="T"/>
+    </Enum>
+
+</Enumerations>
