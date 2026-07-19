@@ -7,6 +7,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 # ---------------------------------------------------------------------------
+# Standalone Asio (header-only, no Boost dependency)
+# ---------------------------------------------------------------------------
+include(FetchContent)
+FetchContent_Declare(
+    asio
+    GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
+    GIT_TAG        asio-1-30-2
+    GIT_SHALLOW    TRUE
+)
+FetchContent_MakeAvailable(asio)
+
+# Asio is header-only; create an interface target for easy consumption
+add_library(asio_headers INTERFACE)
+target_include_directories(asio_headers INTERFACE ${asio_SOURCE_DIR}/asio/include)
+target_compile_definitions(asio_headers INTERFACE ASIO_STANDALONE ASIO_NO_DEPRECATED)
+
+# ---------------------------------------------------------------------------
 # Protocol header generation (shared by every component below)
 # ---------------------------------------------------------------------------
 set(PROTOCOL_DIR       ${CMAKE_SOURCE_DIR}/Protocol)
