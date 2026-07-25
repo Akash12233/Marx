@@ -5,7 +5,7 @@
 #include "routing/EndpointRegistry.h"
 #include "routing/Router.h"
 #include "client/fix/Fix.h"
-#include "client/ouch/Ouch.h"
+#include "venue/ouch/Ouch.h"
 
 #include <iostream>
 #include <thread>
@@ -53,11 +53,11 @@ int main(int argc, char** argv) {
 
         // 3. Instantiate Sessions directly from config
         marx::LOG_INFO("System", "Creating FIX Client Session...");
-        marx::client::fix::FixClient fixClient(config, "fix");
+        marx::client::fix::FixClient fixClient(config, "fix", &router);
         registry.registerSession(fixClient.context().sessionId, &fixClient);
 
-        marx::LOG_INFO("System", "Creating OUCH Client Session...");
-        marx::client::ouch::OuchClient ouchClient(config, "ouch", &router);
+        marx::LOG_INFO("System", "Creating OUCH Venue Session...");
+        marx::venue::ouch::OuchVenue ouchClient(config, "ouch", &router);
         registry.registerSession(ouchClient.context().sessionId, &ouchClient);
 
         // Configure routing destinations

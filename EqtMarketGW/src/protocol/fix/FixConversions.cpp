@@ -56,8 +56,13 @@ MODEL::messages::CreateOrderReject convert<MODEL::messages::CreateOrderReject, F
     target.setFilledQuantity(MODEL::fields::FilledQuantity(static_cast<int>(src.getCumQty().get())));
     target.setRemainingQuantity(MODEL::fields::RemainingQuantity(static_cast<int>(src.getLeavesQty().get())));
     target.setAveragePrice(MODEL::fields::AveragePrice(src.getAvgPx().get()));
-    target.setText(MODEL::fields::Text(src.getText().toString()));
-    target.setRejectReason(MODEL::fields::RejectReason(src.getOrdRejReason().toString()));
+    std::string reason = src.getText().toString();
+    if (reason.empty()) reason = src.getOrdRejReason().toString();
+    if (reason.rfind("MARX: ", 0) != 0 && reason.rfind("EX: ", 0) != 0) {
+        reason = "EX: " + reason;
+    }
+    target.setText(MODEL::fields::Text(reason));
+    target.setRejectReason(MODEL::fields::RejectReason(reason));
     return target;
 }
 
@@ -144,7 +149,11 @@ MODEL::messages::CancelOrderReject convert<MODEL::messages::CancelOrderReject, F
     target.setClientOrderId(MODEL::fields::ClientOrderId(src.getClOrdID().toString()));
     target.setVenueOrderId(MODEL::fields::VenueOrderId(src.getOrderID().toString()));
     target.setOrderStatus(MODEL::fields::OrderStatus(src.getOrdStatus().get()));
-    target.setRejectReason(MODEL::fields::RejectReason(src.getText().toString()));
+    std::string reason = src.getText().toString();
+    if (reason.rfind("MARX: ", 0) != 0 && reason.rfind("EX: ", 0) != 0) {
+        reason = "EX: " + reason;
+    }
+    target.setRejectReason(MODEL::fields::RejectReason(reason));
     return target;
 }
 
@@ -155,7 +164,11 @@ MODEL::messages::ReplaceOrderReject convert<MODEL::messages::ReplaceOrderReject,
     target.setClientOrderId(MODEL::fields::ClientOrderId(src.getClOrdID().toString()));
     target.setVenueOrderId(MODEL::fields::VenueOrderId(src.getOrderID().toString()));
     target.setOrderStatus(MODEL::fields::OrderStatus(src.getOrdStatus().get()));
-    target.setRejectReason(MODEL::fields::RejectReason(src.getText().toString()));
+    std::string reason = src.getText().toString();
+    if (reason.rfind("MARX: ", 0) != 0 && reason.rfind("EX: ", 0) != 0) {
+        reason = "EX: " + reason;
+    }
+    target.setRejectReason(MODEL::fields::RejectReason(reason));
     return target;
 }
 

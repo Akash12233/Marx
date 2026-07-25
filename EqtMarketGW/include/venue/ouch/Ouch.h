@@ -1,6 +1,6 @@
 #pragma once
 
-#include "abstract/ClientSession.h"
+#include "abstract/VenueSession.h"
 #include "protocol/ouch/Ouch.h"
 #include "protocol/ouch/OuchDecoder.h"
 #include "protocol/ouch/OuchEncoder.h"
@@ -11,13 +11,13 @@ namespace marx {
 class Router;
 }
 
-namespace marx::client::ouch {
+namespace marx::venue::ouch {
 
-class OuchClient : public ClientSession {
+class OuchVenue : public VenueSession {
 public:
-    OuchClient(SessionContext ctx, Router* router = nullptr);
-    OuchClient(const ConfigLoader& config, const std::string& prefix, Router* router = nullptr);
-    ~OuchClient() override = default;
+    OuchVenue(SessionContext ctx, Router* router = nullptr);
+    OuchVenue(const ConfigLoader& config, const std::string& prefix, Router* router = nullptr);
+    ~OuchVenue() override = default;
 
     // CDM Routing Interface (Polymorphic dispatch overrides)
     void routeCDM(const MODEL::messages::NewOrderRequest& msg) override;
@@ -25,8 +25,9 @@ public:
     void routeCDM(const MODEL::messages::CancelOrderRequest& msg) override;
 
 protected:
-    // From ClientSession
-    void initiateLogon() override;
+    // From VenueSession
+    void respondToLogon() override;
+    void onConnected() override;
 
     // From Session
     void onData(const char* data, std::size_t len) override;
@@ -42,4 +43,4 @@ private:
     Router* router_ = nullptr;
 };
 
-} // namespace marx::client::ouch
+} // namespace marx::venue::ouch

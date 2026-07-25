@@ -9,13 +9,26 @@
 
 #include "abstract/ConfigLoader.h"
 
+namespace marx {
+class Router;
+}
+
 namespace marx::client::fix {
 
 class FixClient : public ClientSession {
 public:
-    explicit FixClient(SessionContext ctx);
-    FixClient(const ConfigLoader& config, const std::string& prefix);
+    explicit FixClient(SessionContext ctx, Router* router = nullptr);
+    FixClient(const ConfigLoader& config, const std::string& prefix, Router* router = nullptr);
     ~FixClient() override;
+
+    // CDM Routing Interface (Polymorphic dispatch overrides)
+    void routeCDM(const MODEL::messages::CreateOrderExecution& msg) override;
+    void routeCDM(const MODEL::messages::CreateOrderReject& msg) override;
+    void routeCDM(const MODEL::messages::ReplaceOrderExecution& msg) override;
+    void routeCDM(const MODEL::messages::ReplaceOrderReject& msg) override;
+    void routeCDM(const MODEL::messages::CancelOrderExecution& msg) override;
+    void routeCDM(const MODEL::messages::CancelOrderReject& msg) override;
+    void routeCDM(const MODEL::messages::FillOrderExecution& msg) override;
 
     // Expose for testing/data feed
     void onData(const char* data, std::size_t len) override;
@@ -34,6 +47,8 @@ private:
     marx::fix::HeartbeatManager hbManager_;
     marx::fix::FixDecoder       decoder_;
     marx::fix::FixEncoder       encoder_;
+
+    Router* router_ = nullptr;
 };
 
 } // namespace marx::client::fix

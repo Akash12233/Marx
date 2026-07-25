@@ -1,7 +1,7 @@
 #include "routing/OrderLifecycleEngine.h"
+#include "routing/InternalReject.h"
 #include "abstract/Logger.h"
 #include <sstream>
-
 
 namespace marx {
 
@@ -32,16 +32,11 @@ OrderLifecycleEngine::processNewOrder(const MODEL::messages::NewOrderRequest& re
     }
 
     if (!valid) {
-        MODEL::messages::CreateOrderReject reject;
-        reject.setClientOrderId(req.getClientOrderId());
-        reject.setOrderStatus(MODEL::fields::OrderStatus('8')); // Rejected
-        reject.setExecutionType(MODEL::fields::ExecutionType('8')); // Rejected
-        reject.setOrderQty(req.getOrderQty());
-        reject.setFilledQuantity(MODEL::fields::FilledQuantity(0));
-        reject.setRemainingQuantity(MODEL::fields::RemainingQuantity(0));
-        reject.setAveragePrice(MODEL::fields::AveragePrice(0.0));
-        reject.setRejectReason(MODEL::fields::RejectReason(rejectReason));
-        return reject;
+        return InternalReject::createOrderReject(
+            req.getClientOrderId().toString(),
+            rejectReason,
+            req.getOrderQty().get()
+        );
     }
 
     // Persist new order in store
@@ -80,16 +75,12 @@ OrderLifecycleEngine::processReplaceRequest(const MODEL::messages::ReplaceOrderR
     }
 
     if (!valid) {
-        MODEL::messages::ReplaceOrderReject reject;
-        reject.setClientOrderId(req.getClientOrderId());
-        if (parent) {
-            reject.setVenueOrderId(parent->cdmOrder.getVenueOrderId());
-            reject.setOrderStatus(parent->cdmOrder.getOrderStatus());
-        } else {
-            reject.setOrderStatus(MODEL::fields::OrderStatus('8'));
-        }
-        reject.setRejectReason(MODEL::fields::RejectReason(rejectReason));
-        return reject;
+        std::string venueOrderId = parent ? parent->cdmOrder.getVenueOrderId().toString() : "";
+        return InternalReject::replaceOrderReject(
+            req.getClientOrderId().toString(),
+            rejectReason,
+            venueOrderId
+        );
     }
 
     // Persist replacement in store
@@ -122,16 +113,12 @@ OrderLifecycleEngine::processCancelRequest(const MODEL::messages::CancelOrderReq
     }
 
     if (!valid) {
-        MODEL::messages::CancelOrderReject reject;
-        reject.setClientOrderId(req.getClientOrderId());
-        if (record) {
-            reject.setVenueOrderId(record->cdmOrder.getVenueOrderId());
-            reject.setOrderStatus(record->cdmOrder.getOrderStatus());
-        } else {
-            reject.setOrderStatus(MODEL::fields::OrderStatus('8'));
-        }
-        reject.setRejectReason(MODEL::fields::RejectReason(rejectReason));
-        return reject;
+        std::string venueOrderId = record ? record->cdmOrder.getVenueOrderId().toString() : "";
+        return InternalReject::cancelOrderReject(
+            req.getClientOrderId().toString(),
+            rejectReason,
+            venueOrderId
+        );
     }
 
     // Transition state to Pending Cancel
