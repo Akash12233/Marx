@@ -24,7 +24,7 @@ protected:
     /// TCP is up.  Venue side waits for the counterparty to send logon.
     void onConnected() override;
 
-    /// TCP went down.  Venue sessions don't auto-reconnect by default.
+    /// TCP went down.  Schedule reconnect if enabled.
     void onDisconnected() override;
 
     // ---- Protocol hook (pure virtual) ------------------------------------
@@ -32,6 +32,12 @@ protected:
     /// Called when the protocol layer receives a logon message.
     /// Derived class validates and sends back a logon acknowledgement.
     virtual void respondToLogon() = 0;
+
+private:
+    void scheduleReconnect();
+
+    std::uint32_t reconnectAttempts_ = 0;
+    std::unique_ptr<asio::steady_timer> reconnectTimer_;
 };
 
 } // namespace marx

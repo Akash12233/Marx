@@ -1,6 +1,14 @@
 #include "protocol/ouch/OuchConversions.h"
+#include <sstream>
+#include <iomanip>
 
 namespace marx::ouch::conversions {
+
+static std::string formatMarxId(std::uint32_t userRef) {
+    std::ostringstream oss;
+    oss << "MARX" << std::setw(6) << std::setfill('0') << userRef;
+    return oss.str();
+}
 
 // ===========================================================================
 // OUCH -> CDM conversions
@@ -42,7 +50,7 @@ MODEL::messages::CreateOrderReject convert<MODEL::messages::CreateOrderReject, O
     target.setClientOrderId(MODEL::fields::ClientOrderId(src.getClOrdID().toString()));
     target.setOrderStatus(MODEL::fields::OrderStatus('8')); // Rejected
     target.setExecutionType(MODEL::fields::ExecutionType('8')); // Rejected
-    target.setRejectReason(MODEL::fields::RejectReason(std::string(1, src.getReason().get())));
+    target.setRejectReason(MODEL::fields::RejectReason("EX: ReasonCode " + std::to_string(static_cast<int>(src.getReason().get()))));
     return target;
 }
 
@@ -51,7 +59,7 @@ template<>
 MODEL::messages::FillOrderExecution convert<MODEL::messages::FillOrderExecution, OUCH::messages::OrderExecuted>(const OUCH::messages::OrderExecuted& src) {
     MODEL::messages::FillOrderExecution target;
     // OUCH executions reference UserRefNum, which maps to ClientOrderId/MARXID
-    target.setClientOrderId(MODEL::fields::ClientOrderId(std::to_string(src.getUserRefNum().get())));
+    target.setClientOrderId(MODEL::fields::ClientOrderId(formatMarxId(src.getUserRefNum().get())));
     target.setExecutionId(MODEL::fields::ExecutionId(std::to_string(src.getMatchNumber().get())));
     target.setLastFillQuantity(MODEL::fields::LastFillQuantity(static_cast<int>(src.getExecutedQuantity().get())));
     target.setLastFillPrice(MODEL::fields::LastFillPrice(src.getPrice().get()));
@@ -66,7 +74,7 @@ MODEL::messages::FillOrderExecution convert<MODEL::messages::FillOrderExecution,
 template<>
 MODEL::messages::ReplaceOrderExecution convert<MODEL::messages::ReplaceOrderExecution, OUCH::messages::OrderReplaced>(const OUCH::messages::OrderReplaced& src) {
     MODEL::messages::ReplaceOrderExecution target;
-    target.setClientOrderId(MODEL::fields::ClientOrderId(std::to_string(src.getReplacementUserRefNum().get())));
+    target.setClientOrderId(MODEL::fields::ClientOrderId(formatMarxId(src.getReplacementUserRefNum().get())));
     target.setVenueOrderId(MODEL::fields::VenueOrderId(std::to_string(src.getOrderReferenceNumber().get())));
     target.setExecutionType(MODEL::fields::ExecutionType('5')); // Replaced
     target.setOrderStatus(MODEL::fields::OrderStatus('5')); // Replaced
@@ -79,7 +87,7 @@ MODEL::messages::ReplaceOrderExecution convert<MODEL::messages::ReplaceOrderExec
 template<>
 MODEL::messages::CancelOrderExecution convert<MODEL::messages::CancelOrderExecution, OUCH::messages::OrderCanceled>(const OUCH::messages::OrderCanceled& src) {
     MODEL::messages::CancelOrderExecution target;
-    target.setClientOrderId(MODEL::fields::ClientOrderId(std::to_string(src.getUserRefNum().get())));
+    target.setClientOrderId(MODEL::fields::ClientOrderId(formatMarxId(src.getUserRefNum().get())));
     target.setExecutionType(MODEL::fields::ExecutionType('4')); // Cancelled
     target.setOrderStatus(MODEL::fields::OrderStatus('4')); // Cancelled
     target.setFilledQuantity(MODEL::fields::FilledQuantity(static_cast<int>(src.getCanceledQuantity().get())));

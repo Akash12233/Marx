@@ -52,6 +52,10 @@ Session::Session(SessionContext ctx)
     connection_.onError = [this](std::error_code ec) {
         std::cerr << "[" << ctx_.sessionId << "] connection error: "
                   << ec.message() << "\n";
+        if (state_ == ConnectionState::Connecting || state_ == ConnectionState::Connected) {
+            setState(ConnectionState::Disconnected);
+            onDisconnected();
+        }
     };
 }
 
