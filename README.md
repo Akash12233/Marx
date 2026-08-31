@@ -15,45 +15,14 @@ Marx is a low-latency, multi-protocol **Execution Management System (EMS)** desi
 
 ## 2. High-Level Architecture & Directory Structure
 
-### Architecture Flow Diagram
 ```mermaid
-                                +-------------------+
-                                |    Client Layer   |
-                                +---------+---------+
-                                          | (FIX/OUCH)
-                                          ▼
-                                +---------+---------+
-                                |  Client Sessions  |
-                                +---------+---------+
-                                          |
-                                          | [Client -> CDM Conversion]
-                                          ▼
-                                +---------+---------+
-                                |      Router       |
-                                +---------+---------+
-                                          |
-                                          | [Process & Validate]
-                                          ▼
-                                +---------+---------+
-                                |  LifecycleEngine  |
-                                +---------+---------+
-                                          |
-                                          | [Query & Mutate]
-                                          ▼
-                                +---------+---------+
-                                |    OrderStore     |
-                                +---------+---------+
-                                          |
-                                          | [CDM Outbound Dispatch]
-                                          ▼
-                                +---------+---------+
-                                |   Venue Session   |
-                                +---------+---------+
-                                          | (FIX/OUCH)
-                                          ▼
-                                +---------+---------+
-                                |    Venue Layer    |
-                                +-------------------+
+graph TD
+    Client[Client Layer] -->|FIX / OUCH| ClientSessions[Client Sessions]
+    ClientSessions -->|Client -> CDM Conversion| Router[Router]
+    Router -->|Process & Validate| LifecycleEngine[LifecycleEngine]
+    LifecycleEngine -->|Query & Mutate| OrderStore[OrderStore]
+    Router -->|CDM Outbound Dispatch| VenueSession[Venue Session]
+    VenueSession -->|FIX / OUCH| Venue[Venue Layer]
 ```
 
 ### Directory Tree & Component Layout
