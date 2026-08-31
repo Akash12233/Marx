@@ -7,7 +7,7 @@ namespace marx::venue::ouch {
 
 static SessionContext loadOuchCtx(const ConfigLoader& config, const std::string& prefix) {
     SessionContext ctx;
-    ctx.sessionId = "OUCH_CLIENT_01";
+    ctx.sessionId = "OUCH_VENUE_01";
     ctx.host = "127.0.0.1";
     ctx.port = 9877;
     ctx.senderCompId = "MARX_GW_OUCH";
